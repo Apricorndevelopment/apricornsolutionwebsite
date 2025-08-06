@@ -1,0 +1,47 @@
+User-agent: Googlebot
+Allow: /
+
+User-agent: googlebot-image
+Allow: /
+
+User-agent: googlebot-mobile
+Allow: /
+
+User-agent: MSNBot
+Allow: /
+
+User-agent: Slurp
+Allow: /
+
+User-agent: yahoo-mmcrawler
+Allow: /
+
+User-agent: yahoo-blogs/v3.9
+Allow: /
+
+User-agent: ChatGPT
+Allow: /
+
+User-agent: *
+Disallow: /cgi-bin/
+# Block spammy & fake URL patterns
+Disallow: /index.phpsshopdetail/
+Disallow: /index.php/product/edit/
+Disallow: /index.php?shopdetail/
+Disallow: /shopdetail/
+Disallow: /*?p=
+Disallow: /*?shopdetail
+Disallow: /product/edit/
+Disallow: /*?product=
+Disallow: /*?ref=
+Disallow: /*?utm_
+Disallow: /*?fbclid=
+Disallow: /*?gclid=
+Disallow: /*?affiliate=
+Disallow: /*?tracking=
+Disallow: /trackback/
+Disallow: /comments/feed/
+Disallow: /*.php$
+
+
+Sitemap: https://apricornsolutions.com/sitemap.xml

@@ -1,0 +1,42 @@
+# Enable mod_rewrite
+RewriteEngine On
+
+# Skip rewrite if file or directory exists (IMPORTANT for /admin etc.)
+RewriteCond %{REQUEST_FILENAME} -f [OR]
+RewriteCond %{REQUEST_FILENAME} -d
+RewriteRule ^ - [L]
+
+
+# Remove .php extension from URLs
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME}\.php -f
+RewriteRule ^(.*)$ $1.php [NC,L]
+
+# Remove .php extension from URLs
+RewriteCond %{REQUEST_FILENAME}\.php -f
+RewriteRule ^([^/]+)/?$ $1.php [NC,L]
+
+# # Redirect requests with .php to URLs without .php (optional, to avoid duplicate content)
+RewriteRule ^([a-zA-Z0-9-]+)/?$ page.php?slug=$1 [L,QSA]
+
+# Redirect .php URLs to clean versions (optional)
+RewriteCond %{THE_REQUEST} \s([^.]+)\.php[\s?] [NC]
+RewriteRule ^([^.]+)\.php$ /$1 [R=301,L]
+
+# Handle SEO friendly blog URLs
+#RewriteRule ^([a-zA-Z0-9-]+)/?$ blogdetails.php$1 [L,QSA]
+
+
+# Custom 404 page
+ErrorDocument 404 /404.html
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteCond %{HTTP_ACCEPT} image/webp
+  RewriteCond %{REQUEST_FILENAME}.webp -f
+  RewriteRule (.+)\.(jpg|jpeg|png)$ $1.webp [T=image/webp,E=accept:1]
+</IfModule>
+
+
+<FilesMatch ".*">
+  Header set X-Robots-Tag "index, follow"
+</FilesMatch>
